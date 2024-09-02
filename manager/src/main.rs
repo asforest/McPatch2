@@ -12,6 +12,7 @@ use serde::Deserialize;
 
 use crate::subcommand::check::do_check;
 use crate::subcommand::combine::do_combine;
+use crate::subcommand::dav::do_dav;
 use crate::subcommand::pack::do_pack;
 use crate::subcommand::revert::do_revert;
 use crate::subcommand::serve::do_serve;
@@ -67,6 +68,9 @@ enum Commands {
         #[arg(default_value_t = 0)]
         regain: u64,
     },
+
+    /// 以Webdav模式工作
+    Dav,
 }
 
 #[derive(Deserialize, Clone)]
@@ -173,5 +177,6 @@ fn handle_command(cmd: CommandLineInterface) -> i32 {
         Commands::Test => do_test(&context),
         Commands::Revert => do_revert(&context),
         Commands::Serve { port, capacity, regain } => do_serve(port, capacity, regain, &context),
+        Commands::Dav => do_dav(&context),
     }
 }
