@@ -61,7 +61,7 @@ impl Webdav {
 
         let mask_keyword = match reqwest::Url::parse(url) {
             Ok(parsed) => parsed.host_str().unwrap_or("").to_owned(),
-            Err(_) => "".to_owned(),
+            Err(_) => "[没有主机部分]".to_owned(),
         };
 
         Self { client, index, mask_keyword }
