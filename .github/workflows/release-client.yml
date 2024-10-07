@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies on Linux
         if: runner.os == 'Linux'
         run: |-
-          apt install libssl-devel
+          sudo apt install libssl-devel
 
       - name: Cargo build
         env:
