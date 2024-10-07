@@ -21,7 +21,7 @@ jobs:
             rustc-target: x86_64-pc-windows-msvc
           - os: ubuntu-latest
             rustc-target: x86_64-unknown-linux-gnu
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
     env:
       rust-version: '1.80'
     steps:
@@ -41,10 +41,10 @@ jobs:
           rustup target add ${{ matrix.rustc-target }}
           cargo ci client
       
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: target/dist/*
+      # - name: Release
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     files: target/dist/*
 
       # - name: Distribute
       #   uses: bxb100/action-upload@main
